@@ -23,13 +23,13 @@ table.table.table-striped
     tr
       th Edit
       th Delete
-      th Title
-      th Due Date
-      th Priority
-      th Complete?
-      th Created At 
+      th(ng-click='sort("title")') Title
+      th(ng-click='sort("dueDate")') Due Date
+      th(ng-click='sort("priority")') Priority
+      th(ng-click='sort("isComplete")') Complete?
+      th(ng-click='sort("createdAt")') Created At 
   tbody
-    tr(ng-repeat= 'task in afTasks')
+    tr(ng-repeat= 'task in afTasks | orderBy:taskOrder', ng-class='{completed:task.isComplete}')
       td: button.btn.btn-info.btn-xs(ng-click='editTask(task)') Edit
       td: button.btn.btn-danger.btn-xs(ng-click='deleteTask(task)') Delete
       td {{task.title}}

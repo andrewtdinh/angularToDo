@@ -4,7 +4,11 @@ angular.module('checklist')
 .controller('TasksCtrl', ['$scope', 'Task', '$window', function($scope, Task, $window){
   $scope.afTasks = Task.init();
 
-  console.info('I am a task controller');
+
+  $scope.sort = function(sortString){
+    var modifier = ($scope.taskOrder === sortString) ? '-': '';
+    $scope.taskOrder = modifier + sortString;
+  };
 
   $scope.editTask = function(task){
     task.dueDate = new Date(task.dueDate);
