@@ -2,19 +2,42 @@
 
 angular.module('checklist')
 .controller('TasksCtrl', ['$scope', 'Task', '$window', function($scope, Task, $window){
+  $scope.afTasks = Task.init();
+
+  console.info('I am a task controller');
+
+  $scope.editTask = function(task){
+    task.dueDate = new Date(task.dueDate);
+    $scope.task = task;
+  };
+
+  $scope.updateTask = function (task){
+    $scope.task = {};
+    task.dueDate = task.dueDate.getTime();
+    Task.save(task);
+  };
+
+  $scope.toggleComplete = function (task){
+    Task.save(task);
+  };
+
+  $scope.deleteTask = function(task){
+    Task.destroy(task);
+  };
+
   $scope.addTask = function(task){
     var o = {
       title: task.title,
       dueDate: task.dueDate.getTime(),
       priority: task.priority,
       isComplete: false,
-      createAt: $window.Firebase.ServerValue.TIMESTAMP
+      createdAt: $window.Firebase.ServerValue.TIMESTAMP
     };
 
-    console.log(o);
     Task.add(o)
     .then(function(data){
       console.info('data', data);
+      $scope.task = {};
     });
   };
 }]);
