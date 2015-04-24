@@ -1,0 +1,19 @@
+h3 TASKS
+
+.row
+  .col-xs-4
+    form
+      .form-group
+        label(for='title') Task Title
+        input#title.form-control(type='text', name='title', ng-model='task.title')
+      .form-group
+        label(for='dueDate') Task Due Date
+        input#dueDate.form-control(type='date', name='dueDate', ng-model='task.dueDate')
+      .form-group
+        label(for='priority') Priority
+        select#priority.form-control(name='priority', ng-model='task.priority')
+          option Low
+          option Medium
+          option High
+      .form-group
+        button.btn.btn-primary(ng-click='addTask(task)') Add Task

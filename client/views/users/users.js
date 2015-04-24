@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('checklist')
-.controller('UsersCtrl', ['$scope', 'User', '$state', '$rootScope', function($scope, User, $state, $rootScope){
+.controller('UsersCtrl', ['$scope', 'User', '$state', '$rootScope',  function($scope, User, $state, $rootScope){
   console.info('$state is:', $state.current.name);
   $scope.name = $state.current.name;
 
